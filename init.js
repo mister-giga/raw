@@ -14,8 +14,6 @@ window.getPlaylistFromId = async function(id) {
     const resp = await fetch(playListUrl);
     const html = await resp.text();
 
-    console.log(html);
-
     const playlistVideoListRendererKeyName = "\"playlistVideoListRenderer\":";
     const startIndex = html.indexOf(playlistVideoListRendererKeyName);
 
@@ -23,7 +21,7 @@ window.getPlaylistFromId = async function(id) {
     let isInString = false;
     let i = startIndex + playlistVideoListRendererKeyName.length + 1;
     
-    console.log(startIndex, i);
+    console.log(playlistVideoListRendererKeyName, startIndex, i);
     
     for (; i < html.length && level > 0; i++)
     {
