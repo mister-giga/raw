@@ -11,7 +11,13 @@ window.getVideos = function (jtoken, itemsKey){
 
 window.getPlaylistFromId = async function(id) {
     const playListUrl = `https://www.youtube.com/playlist?list=${id}`;
-    const html = await window.getStringAsync(playListUrl);
+    const resp = await fetch(playListUrl, {
+        method: 'GET',
+        headers: {
+            'User-Agent': 'PostmanRuntime/7.32.2'
+        }
+    });
+    const html = await resp.text();
 
     const playlistVideoListRendererKeyName = "\"playlistVideoListRenderer\":";
     const startIndex = html.indexOf(playlistVideoListRendererKeyName);
