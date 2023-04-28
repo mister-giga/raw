@@ -13,13 +13,17 @@ window.getPlaylistFromId = async function(id) {
     const playListUrl = `https://www.youtube.com/playlist?list=${id}`;
     const resp = await fetch(playListUrl);
     const html = await resp.text();
-    
+
+    console.log(html);
+
     const playlistVideoListRendererKeyName = "\"playlistVideoListRenderer\":";
     const startIndex = html.indexOf(playlistVideoListRendererKeyName);
 
     let level = 1;
     let isInString = false;
     let i = startIndex + playlistVideoListRendererKeyName.length + 1;
+    
+    console.log(startIndex, i);
     
     for (; i < html.length && level > 0; i++)
     {
