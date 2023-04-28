@@ -43,7 +43,7 @@ window.getPlaylistFromId = async function(id) {
         videos: window.getVideos(jsonObj, 'contents')
     };
 
-    console.log(playlist);
+    return playlist;
     
 }
 // window.getPlaylistFromId("PLLGmt3bXA_93pvHgKm7dbEvW410pDFKKl");
