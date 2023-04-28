@@ -9,6 +9,10 @@ window.getVideos = function (jtoken, itemsKey){
         }));
 }
 
+window.getContinuationToken = function (jtoken, itemsKey){
+    return jtoken[itemsKey]?.pop()?.continuationItemRenderer?.continuationEndpoint?.continuationCommand?.token ?? null;
+}
+
 window.getPlaylistFromId = async function(id) {
     const playListUrl = `https://www.youtube.com/playlist?list=${id}`;
     const resp = await fetch(playListUrl, {
@@ -47,11 +51,12 @@ window.getPlaylistFromId = async function(id) {
 
     const playlist = {
         id: jsonObj.playlistId,
-        videos: window.getVideos(jsonObj, 'contents')
+        videos: window.getVideos(jsonObj, 'contents'),
+        continuationToken: window.getContinuationToken(jsonObj,'contents')
     };
 
     return playlist;
     
 }
-// const f = (async () => console.log( await window.getPlaylistFromId("PLLGmt3bXA_93pvHgKm7dbEvW410pDFKKl")));
-// f();
+const f = (async () => console.log( await window.getPlaylistFromId("PLLGmt3bXA_93pvHgKm7dbEvW410pDFKKl")));
+f();
