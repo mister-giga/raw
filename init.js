@@ -1,3 +1,14 @@
+window.getPlaylistIdFromStr = function(str) {
+    if(str.startsWith('http')){
+        const params = new Proxy(new URLSearchParams(new URL(str).search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        return params.list;
+    }
+    return str;
+}
+
+
 window.getVideos = function (jtoken, itemsKey){
     return jtoken[itemsKey]
         .filter(x => x.continuationItemRenderer === undefined)
