@@ -45,6 +45,7 @@ window.getPlaylistFromId = async function(id) {
             level--;
     }
     const jsonText = html.substr(startIndex + playlistVideoListRendererKeyName.length, i - startIndex - playlistVideoListRendererKeyName.length);
+    console.log(html.length, startIndex, i);
     const jsonObj = JSON.parse(jsonText);
 
     const playlist = {
